@@ -2,6 +2,7 @@ package ca.knowledgetranslation.dev.eaaps.beaconplayground;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -59,7 +60,6 @@ public class BeaconsMonitoringService  extends Service {
             @Override public void onServiceReady() {
                 try {
                     Log.d(TAG, "serviceReady");
-                    //beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
                     beaconManager.startMonitoring(ALL_ESTIMOTE_BEACONS);
                 } catch (RemoteException e) {
                     Log.e(TAG, "Cannot start ranging", e);
@@ -71,11 +71,20 @@ public class BeaconsMonitoringService  extends Service {
             @Override public void onEnteredRegion(Region region, List<Beacon> beacons) {
                 Log.d(TAG, "entered");
                 Toast.makeText(BeaconsMonitoringService.this, "Entered", Toast.LENGTH_LONG).show();
+
+                Intent notificationIntent = new Intent(BeaconsMonitoringService.this, MyActivity.class);
+                notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                PendingIntent intent = PendingIntent.getActivity(BeaconsMonitoringService.this, 0,
+                        notificationIntent, 0);
+
                 Notification noti = new Notification.Builder(BeaconsMonitoringService.this)
                         .setContentTitle("Entered")
                         .setContentText("You're home!")
                         .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentIntent(intent)
                         .build();
+
 
                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotificationManager.cancel(2);

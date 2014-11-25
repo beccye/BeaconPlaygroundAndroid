@@ -12,51 +12,12 @@ import android.view.ViewGroup;
 
 public class MyActivity extends Activity {
 
-    //private static final String ESTIMOTE_PROXIMITY_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
-    //private static final String TAG = "estimote";
-    //private static final Region ALL_ESTIMOTE_BEACONS = new Region("rid", ESTIMOTE_PROXIMITY_UUID, null, null);
-
-    //BeaconManager beaconManager = new BeaconManager(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my);
-        /*
-        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
-            @Override public void onServiceReady() {
-                try {
-                    beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
-                    beaconManager.startMonitoring(ALL_ESTIMOTE_BEACONS);
-                } catch (RemoteException e) {
-                    Log.e(TAG, "Cannot start ranging", e);
-                }
-            }
-        });
-        // When no longer needed. Note that ranging will stop.
-        beaconManager.disconnect();
-        final TextView txtView = (TextView) findViewById(R.id.textView);
 
-        txtView.setMovementMethod(new ScrollingMovementMethod());
-
-        beaconManager.setMonitoringListener(new BeaconManager.MonitoringListener() {
-            @Override public void onEnteredRegion(Region region, List<Beacon> beacons) {
-                txtView.append("Entered region: " + beacons + "\n\n" +
-                        "\n");
-            }
-            @Override public void onExitedRegion(Region region) {
-                txtView.append("Exited region: " + region + "\n\n" +
-                        "\n");
-            }
-        });
-        beaconManager.setRangingListener(new BeaconManager.RangingListener() {
-            @Override
-            public void onBeaconsDiscovered(Region region, final List beacons) {
-                txtView.append("Ranged region: " + region + "\n");
-                txtView.append("Ranged beacons: " + beacons + "\n\n\n");
-            }
-        });
-        */
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
