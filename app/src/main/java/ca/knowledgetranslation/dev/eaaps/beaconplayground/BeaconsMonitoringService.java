@@ -53,7 +53,7 @@ public class BeaconsMonitoringService  extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        AndroidWorkshopApplication app = (AndroidWorkshopApplication)getApplication();
+        BeaconApplication app = (BeaconApplication)getApplication();
         beaconManager = app.getBeaconManager();
 
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {

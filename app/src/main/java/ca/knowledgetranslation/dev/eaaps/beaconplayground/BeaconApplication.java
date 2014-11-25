@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.estimote.sdk.BeaconManager;
 
-public class AndroidWorkshopApplication extends Application {
+public class BeaconApplication extends Application {
 
     private BeaconManager beaconManager = null;
 
